@@ -1,0 +1,60 @@
+---
+title: "babynames"
+author: "Andy Price"
+date: "11/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(babynames)
+library(tidyverse)
+```
+
+```{r}
+
+length(unique(babynames$name))
+length(unique(babynames$year))
+
+
+most_common <- babynames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(number_of_years = n()) %>%
+  arrange(desc(number_of_years)) %>%
+  filter(number_of_years == 138) %>%
+  pluck("name")  
+
+  babynames %>%
+filter(name %in% (most_common))
+
+most_common 
+  ggplot(aes(x = year, y = prop, group = name, color = name)) + 
+  geom_point()
+  
+  
+babynames %>%
+  ggplot(aes(x = year, y = prop, group = name, color = name)) + 
+  geom_point()
+```
+
+
+```{r}
+one_name <- babynames %>%
+  filter(name == "")
+
+lm()
+
+
+most_common
+
+x <- map(most_common, ~ babynames %>%  filter(sex == "M") %>% filter(name == .x))
+
+
+d <- babynames
+
+
+
+```
+
+
